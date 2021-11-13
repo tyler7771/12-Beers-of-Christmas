@@ -10,6 +10,17 @@ const App = () => {
 
   const generatePairs = () => {
     const shuffledPairs = shuffle();
+    const submitPairs = [];
+
+    shuffledPairs.forEach((el, i) => {
+      if (i === 0) {
+        const pair = shuffledPairs[shuffledPairs.length - 1];
+        submitPairs.push({ ...el, pair });
+        return;
+      }
+
+      submitPairs.push({ ...el, pair: shuffledPairs[i - 1] });
+    });
     debugger;
   };
 
@@ -32,7 +43,6 @@ const App = () => {
   };
 
   const handleSubmit = () => {
-    // debugger;
     const pairsCopy = cloneDeep(pairs);
 
     pairsCopy.push({
@@ -40,11 +50,9 @@ const App = () => {
       preferance,
     });
 
-    // debugger;
     setPairs(pairsCopy);
     setName("");
     setPreferance("");
-    // debugger;
   };
 
   return (
