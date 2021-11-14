@@ -21,7 +21,20 @@ const ParticipantPage = () => {
     setParticipantObj({ participantName: objURL.name, ...decoded });
   }, []);
 
-  return <div className="participant-container">participant</div>;
+  return (
+    <div className="participant-container">
+      {participantObj.name && (
+        <div className={"participant-card"}>
+          <h2>
+            Hi {participantObj.participantName.split(" ")[0]}! You're buying
+            beers for
+          </h2>
+          <p>{participantObj.name}</p>
+          <span>Their preferences: {participantObj.preferance}</span>
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default ParticipantPage;
