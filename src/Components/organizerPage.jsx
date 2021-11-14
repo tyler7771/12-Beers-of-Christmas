@@ -1,9 +1,9 @@
-import "./App.css";
+import * as encode from "jwt-encode";
 
 import cloneDeep from "lodash/cloneDeep";
 import { useState } from "react";
 
-const App = () => {
+const OrganizerPage = () => {
   const [pairs, setPairs] = useState([]);
   const [name, setName] = useState("");
   const [preferance, setPreferance] = useState("");
@@ -13,16 +13,23 @@ const App = () => {
     const submitPairs = [];
 
     shuffledPairs.forEach((el, i) => {
+      let pair;
       if (i === 0) {
-        const pair = shuffledPairs[shuffledPairs.length - 1];
-        submitPairs.push({ ...el, pair });
-        return;
+        pair = encode(shuffledPairs[shuffledPairs.length - 1], "secret");
+      } else {
+        pair = encode(shuffledPairs[i - 1], "secret");
       }
 
-      submitPairs.push({ ...el, pair: shuffledPairs[i - 1] });
+      const url = generateUrl(el.name, pair);
+      debugger;
+
+      submitPairs.push({ ...el, url });
     });
     debugger;
   };
+
+  const generateUrl = (name, pairToken) =>
+    `${window.location.href}?name=${name}&pairToken=${pairToken}`;
 
   const shuffle = () => {
     const copy = cloneDeep(pairs);
@@ -56,7 +63,7 @@ const App = () => {
   };
 
   return (
-    <div className="App">
+    <div className="organizer-container">
       {pairs.map((pair, i) => (
         <div key={`pair${i}`}>
           <span>{pair.name}</span>
@@ -81,4 +88,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default OrganizerPage;
