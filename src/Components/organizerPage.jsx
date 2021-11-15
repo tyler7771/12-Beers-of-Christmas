@@ -1,5 +1,6 @@
 import * as encode from "jwt-encode";
 
+import CsvDownload from "react-json-to-csv";
 import cloneDeep from "lodash/cloneDeep";
 import { useState } from "react";
 
@@ -21,11 +22,9 @@ const OrganizerPage = () => {
       }
 
       const url = generateUrl(el.name, pair);
-      debugger;
 
       submitPairs.push({ ...el, url });
     });
-    debugger;
   };
 
   const generateUrl = (name, pairToken) =>
@@ -64,26 +63,47 @@ const OrganizerPage = () => {
 
   return (
     <div className="organizer-container">
-      {pairs.map((pair, i) => (
-        <div key={`pair${i}`}>
-          <span>{pair.name}</span>
-          <span>{pair.preferance}</span>
-        </div>
-      ))}
+      <div className="pairs-container">
+        {pairs.map((pair, i) => (
+          <div key={`pair${i}`}>
+            <p className="name">{pair.name}</p>
+            <p className="preferance">{pair.preferance}</p>
+            <button
+              onClick={() => {
+                let tempArr = cloneDeep(pairs);
+                tempArr.splice(i, 1);
+                setPairs(tempArr);
+              }}
+            >
+              x
+            </button>
+          </div>
+        ))}
+      </div>
       <form
         onSubmit={(e) => {
           e.preventDefault();
           handleSubmit();
         }}
       >
-        <input onChange={(e) => setName(e.currentTarget.value)} value={name} />
-        <input
-          onChange={(e) => setPreferance(e.currentTarget.value)}
-          value={preferance}
-        />
+        <div className="input-container">
+          <input
+            onChange={(e) => setName(e.currentTarget.value)}
+            value={name}
+            placeholder="Name"
+          />
+          <input
+            placeholder="Preferances"
+            onChange={(e) => setPreferance(e.currentTarget.value)}
+            value={preferance}
+          />
+        </div>
         <button type="submit">Submit</button>
       </form>
-      <button onClick={generatePairs}>Generate Pairs</button>
+      <button id="generate-button" onClick={generatePairs}>
+        Generate Pairs
+      </button>
+      <CsvDownload id="generate-button" data={pairs} />
     </div>
   );
 };
