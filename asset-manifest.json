@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/12-Beers-of-Christmas/static/css/main.e83344c0.chunk.css",
+    "main.css": "/12-Beers-of-Christmas/static/css/main.6bbd8c50.chunk.css",
     "main.js": "/12-Beers-of-Christmas/static/js/main.666f428c.chunk.js",
     "main.js.map": "/12-Beers-of-Christmas/static/js/main.666f428c.chunk.js.map",
     "runtime-main.js": "/12-Beers-of-Christmas/static/js/runtime-main.85e5b536.js",
@@ -12,7 +12,7 @@
     "static/js/3.cef3960a.chunk.js.map": "/12-Beers-of-Christmas/static/js/3.cef3960a.chunk.js.map",
     "index.html": "/12-Beers-of-Christmas/index.html",
     "static/css/2.9af4e8c6.chunk.css.map": "/12-Beers-of-Christmas/static/css/2.9af4e8c6.chunk.css.map",
-    "static/css/main.e83344c0.chunk.css.map": "/12-Beers-of-Christmas/static/css/main.e83344c0.chunk.css.map",
+    "static/css/main.6bbd8c50.chunk.css.map": "/12-Beers-of-Christmas/static/css/main.6bbd8c50.chunk.css.map",
     "static/js/2.a2a38f2b.chunk.js.LICENSE.txt": "/12-Beers-of-Christmas/static/js/2.a2a38f2b.chunk.js.LICENSE.txt",
     "static/media/santa-with-beer.d3c6e103.png": "/12-Beers-of-Christmas/static/media/santa-with-beer.d3c6e103.png"
   },
@@ -20,7 +20,7 @@
     "static/js/runtime-main.85e5b536.js",
     "static/css/2.9af4e8c6.chunk.css",
     "static/js/2.a2a38f2b.chunk.js",
-    "static/css/main.e83344c0.chunk.css",
+    "static/css/main.6bbd8c50.chunk.css",
     "static/js/main.666f428c.chunk.js"
   ]
 }
