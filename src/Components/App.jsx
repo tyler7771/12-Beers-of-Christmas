@@ -10,7 +10,7 @@ const App = () => (
       ))}
     </div>
     {window.location.search.length ? <ParticipantPage /> : <OrganizerPage />}
-    <img id="santa" src={santaImg} />
+    <img id="santa" alt="santa with beer" src={santaImg} />
   </>
 );
 

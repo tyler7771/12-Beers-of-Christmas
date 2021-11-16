@@ -1,6 +1,6 @@
 import * as encode from "jwt-encode";
 
-import CsvDownload from "react-json-to-csv";
+import PairsModal from "./pairsModal";
 import cloneDeep from "lodash/cloneDeep";
 import { useState } from "react";
 
@@ -8,9 +8,11 @@ const OrganizerPage = () => {
   const [pairs, setPairs] = useState([]);
   const [name, setName] = useState("");
   const [preferance, setPreferance] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const [generatedPairs, setGeneratedPairs] = useState([]);
 
   const generatePairs = () => {
-    const shuffledPairs = shuffle();
+    const shuffledPairs = shuffle(pairs);
     const submitPairs = [];
 
     shuffledPairs.forEach((el, i) => {
@@ -25,13 +27,16 @@ const OrganizerPage = () => {
 
       submitPairs.push({ ...el, url });
     });
+
+    setGeneratedPairs(shuffle(submitPairs));
+    setShowModal(true);
   };
 
   const generateUrl = (name, pairToken) =>
     `${window.location.href}?name=${name}&pairToken=${pairToken}`;
 
-  const shuffle = () => {
-    const copy = cloneDeep(pairs);
+  const shuffle = (arr) => {
+    const copy = cloneDeep(arr);
     let currentIndex = copy.length;
     let randomIndex;
 
@@ -62,49 +67,55 @@ const OrganizerPage = () => {
   };
 
   return (
-    <div className="organizer-container">
-      <div className="pairs-container">
-        {pairs.map((pair, i) => (
-          <div key={`pair${i}`}>
-            <p className="name">{pair.name}</p>
-            <p className="preferance">{pair.preferance}</p>
-            <button
-              onClick={() => {
-                let tempArr = cloneDeep(pairs);
-                tempArr.splice(i, 1);
-                setPairs(tempArr);
-              }}
-            >
-              x
-            </button>
-          </div>
-        ))}
-      </div>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleSubmit();
-        }}
-      >
-        <div className="input-container">
-          <input
-            onChange={(e) => setName(e.currentTarget.value)}
-            value={name}
-            placeholder="Name"
-          />
-          <input
-            placeholder="Preferances"
-            onChange={(e) => setPreferance(e.currentTarget.value)}
-            value={preferance}
-          />
+    <>
+      <div className="organizer-container">
+        <div className="pairs-container">
+          {pairs.map((pair, i) => (
+            <div key={`pair${i}`}>
+              <p className="name">{pair.name}</p>
+              <p className="preferance">{pair.preferance}</p>
+              <button
+                onClick={() => {
+                  let tempArr = cloneDeep(pairs);
+                  tempArr.splice(i, 1);
+                  setPairs(tempArr);
+                }}
+              >
+                x
+              </button>
+            </div>
+          ))}
         </div>
-        <button type="submit">Submit</button>
-      </form>
-      <button id="generate-button" onClick={generatePairs}>
-        Generate Pairs
-      </button>
-      <CsvDownload id="generate-button" data={pairs} />
-    </div>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleSubmit();
+          }}
+        >
+          <div className="input-container">
+            <input
+              onChange={(e) => setName(e.currentTarget.value)}
+              value={name}
+              placeholder="Name"
+            />
+            <input
+              placeholder="Preferances"
+              onChange={(e) => setPreferance(e.currentTarget.value)}
+              value={preferance}
+            />
+          </div>
+          <button type="submit">Submit</button>
+        </form>
+        <button id="generate-button" onClick={generatePairs}>
+          Generate Pairs
+        </button>
+      </div>
+      <PairsModal
+        show={showModal}
+        data={generatedPairs}
+        handleClose={() => setShowModal(false)}
+      />
+    </>
   );
 };
 
