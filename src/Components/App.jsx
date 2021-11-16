@@ -5,8 +5,8 @@ import santaImg from "../styles/assets/santa-with-beer.png";
 const App = () => (
   <>
     <div className="snow">
-      {[...Array(500)].map(() => (
-        <div className="snowflake" />
+      {[...Array(500)].map((_, i) => (
+        <div key={`flake-${i}`} className="snowflake" />
       ))}
     </div>
     {window.location.search.length ? <ParticipantPage /> : <OrganizerPage />}
