@@ -83,3 +83,15 @@ body {
 .snowflake:nth-child(6n) {
   filter: blur(1px);
 }
+
+.git-link {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  color: white;
+
+  &:hover {
+    color: white;
+    font-style: italic;
+  }
+}
