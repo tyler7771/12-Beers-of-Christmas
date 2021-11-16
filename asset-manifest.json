@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/12-Beers-of-Christmas/static/css/main.4112fdc2.chunk.css",
+    "main.js": "/12-Beers-of-Christmas/static/js/main.17ca4a10.chunk.js",
+    "main.js.map": "/12-Beers-of-Christmas/static/js/main.17ca4a10.chunk.js.map",
+    "runtime-main.js": "/12-Beers-of-Christmas/static/js/runtime-main.85e5b536.js",
+    "runtime-main.js.map": "/12-Beers-of-Christmas/static/js/runtime-main.85e5b536.js.map",
+    "static/css/2.9af4e8c6.chunk.css": "/12-Beers-of-Christmas/static/css/2.9af4e8c6.chunk.css",
+    "static/js/2.a2a38f2b.chunk.js": "/12-Beers-of-Christmas/static/js/2.a2a38f2b.chunk.js",
+    "static/js/2.a2a38f2b.chunk.js.map": "/12-Beers-of-Christmas/static/js/2.a2a38f2b.chunk.js.map",
+    "static/js/3.cef3960a.chunk.js": "/12-Beers-of-Christmas/static/js/3.cef3960a.chunk.js",
+    "static/js/3.cef3960a.chunk.js.map": "/12-Beers-of-Christmas/static/js/3.cef3960a.chunk.js.map",
+    "index.html": "/12-Beers-of-Christmas/index.html",
+    "static/css/2.9af4e8c6.chunk.css.map": "/12-Beers-of-Christmas/static/css/2.9af4e8c6.chunk.css.map",
+    "static/css/main.4112fdc2.chunk.css.map": "/12-Beers-of-Christmas/static/css/main.4112fdc2.chunk.css.map",
+    "static/js/2.a2a38f2b.chunk.js.LICENSE.txt": "/12-Beers-of-Christmas/static/js/2.a2a38f2b.chunk.js.LICENSE.txt",
+    "static/media/santa-with-beer.d3c6e103.png": "/12-Beers-of-Christmas/static/media/santa-with-beer.d3c6e103.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.85e5b536.js",
+    "static/css/2.9af4e8c6.chunk.css",
+    "static/js/2.a2a38f2b.chunk.js",
+    "static/css/main.4112fdc2.chunk.css",
+    "static/js/main.17ca4a10.chunk.js"
+  ]
+}
