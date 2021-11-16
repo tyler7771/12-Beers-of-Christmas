@@ -1,6 +1,6 @@
 {
   "name": "12-beers-of-christmas",
-  "homepage": "https:twelvebeersofchristmas.holiday ",
+  "homepage": "https://twelvebeersofchristmas.holiday",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
