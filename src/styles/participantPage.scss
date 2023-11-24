@@ -18,7 +18,10 @@
   transform: translateY(-50%);
   box-shadow: 0 3px 15px rgba(0, 0, 0, 0.5);
 
-  animation: 1s ease-in 0s 1 topToBottom;
+  @media screen and (min-width: 769px) {
+    animation: 1s ease-in 0s 1 topToBottom;
+  }
+
   position: absolute;
 }
 
