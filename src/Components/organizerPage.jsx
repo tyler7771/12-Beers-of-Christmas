@@ -8,20 +8,22 @@ const OrganizerPage = () => {
   const [pairs, setPairs] = useState([]);
   const [name, setName] = useState("");
   const [preferance, setPreferance] = useState("");
+  const [lastAssigned, setLastAssigned] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [generatedPairs, setGeneratedPairs] = useState([]);
 
   const generatePairs = () => {
-    const shuffledPairs = shuffle(pairs);
+    let shuffledPairs = shuffle(pairs);
+    while (checkLastAssigned(shuffledPairs)) {
+      shuffledPairs = shuffle(pairs);
+    }
     const submitPairs = [];
 
     shuffledPairs.forEach((el, i) => {
-      let pair;
-      if (i === 0) {
-        pair = encode(shuffledPairs[shuffledPairs.length - 1], "secret");
-      } else {
-        pair = encode(shuffledPairs[i - 1], "secret");
-      }
+      const pair = encode(
+        shuffledPairs[i === 0 ? pairs.length - 1 : i - 1],
+        "secret"
+      );
 
       const url = generateUrl(el.name, pair);
 
@@ -32,8 +34,25 @@ const OrganizerPage = () => {
     setShowModal(true);
   };
 
+  const checkLastAssigned = (pairs) => {
+    const checkName = (last, current) => {
+      return last === current;
+    };
+
+    for (let i = 0; i < pairs.length; i++) {
+      const current = pairs[i];
+      const pair = i === 0 ? pairs.length - 1 : i - 1;
+
+      if (checkName(current.lastAssigned, pairs[pair].name)) return true;
+    }
+
+    return false;
+  };
+
   const generateUrl = (name, pairToken) =>
-    `${window.location.href}?name=${name}&pairToken=${pairToken}`;
+    `${window.location.href}?name=${name
+      .split(" ")
+      .join("+")}&pairToken=${pairToken}`;
 
   const shuffle = (arr) => {
     const copy = cloneDeep(arr);
@@ -59,11 +78,13 @@ const OrganizerPage = () => {
     pairsCopy.push({
       name,
       preferance,
+      lastAssigned,
     });
 
     setPairs(pairsCopy);
     setName("");
     setPreferance("");
+    setLastAssigned("");
   };
 
   return (
@@ -73,7 +94,10 @@ const OrganizerPage = () => {
           {pairs.map((pair, i) => (
             <div key={`pair${i}`}>
               <p className="name">{pair.name}</p>
-              <p className="preferance">{pair.preferance}</p>
+              <p className="last-assigned">
+                Last Assigned: {pair.lastAssigned}
+              </p>
+              <p className="preferance">Preferances: {pair.preferance}</p>
               <button
                 onClick={() => {
                   let tempArr = cloneDeep(pairs);
@@ -102,6 +126,11 @@ const OrganizerPage = () => {
               placeholder="Preferances"
               onChange={(e) => setPreferance(e.currentTarget.value)}
               value={preferance}
+            />
+            <input
+              placeholder="Assigned Last Year"
+              onChange={(e) => setLastAssigned(e.currentTarget.value)}
+              value={lastAssigned}
             />
           </div>
           <button type="submit">Submit</button>

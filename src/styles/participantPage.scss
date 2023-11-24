@@ -14,7 +14,8 @@
   border-radius: 4px;
   z-index: 100;
   position: relative;
-  transform: translate(0, -50%);
+  top: 50%;
+  transform: translateY(-50%);
   box-shadow: 0 3px 15px rgba(0, 0, 0, 0.5);
 
   animation: 1s ease-in 0s 1 topToBottom;
