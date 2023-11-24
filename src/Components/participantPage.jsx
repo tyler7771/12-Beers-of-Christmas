@@ -26,8 +26,8 @@ const ParticipantPage = () => {
       {participantObj.name && (
         <div className={"participant-card"}>
           <h2>
-            Hi {participantObj.participantName.split("+").join(" ")}! You're
-            buying beers for
+            Hi {participantObj.participantName.split("+")[0]}! You're buying
+            beers for
           </h2>
           <p>{participantObj.name}</p>
           <span>Their preferences: {participantObj.preferance}</span>

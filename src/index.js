@@ -1,4 +1,5 @@
 import "./styles/index.scss";
+import "../node_modules/react-csv-importer/dist/index.css";
 
 import App from "./Components/App.jsx";
 import React from "react";

@@ -1,5 +1,6 @@
 import * as encode from "jwt-encode";
 
+import ImportModal from "./importModal";
 import PairsModal from "./pairsModal";
 import cloneDeep from "lodash/cloneDeep";
 import { useState } from "react";
@@ -10,6 +11,7 @@ const OrganizerPage = () => {
   const [preferance, setPreferance] = useState("");
   const [lastAssigned, setLastAssigned] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const [showImportModal, setShowImportModal] = useState(false);
   const [generatedPairs, setGeneratedPairs] = useState([]);
 
   const generatePairs = () => {
@@ -87,6 +89,11 @@ const OrganizerPage = () => {
     setLastAssigned("");
   };
 
+  const handleImportClose = (data) => {
+    setPairs(data);
+    setShowImportModal(false);
+  };
+
   return (
     <>
       <div className="organizer-container">
@@ -135,15 +142,19 @@ const OrganizerPage = () => {
           </div>
           <button type="submit">Submit</button>
         </form>
-        <button id="generate-button" onClick={generatePairs}>
-          Generate Pairs
-        </button>
+        <div id="button-container">
+          <button id="import-button" onClick={() => setShowImportModal(true)}>
+            Import CSV
+          </button>
+          <button onClick={generatePairs}>Generate Pairs</button>
+        </div>
       </div>
       <PairsModal
         show={showModal}
         data={generatedPairs}
         handleClose={() => setShowModal(false)}
       />
+      <ImportModal show={showImportModal} handleClose={handleImportClose} />
     </>
   );
 };
